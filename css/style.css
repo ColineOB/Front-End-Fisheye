@@ -1,4 +1,9 @@
 @import url("photographer.css");
+:root {
+    --primary: #901C1C;
+    --secondary: #D3573C;
+    --tertiary: #525252;
+}
 
 body {
     font-family: "DM Sans", sans-serif;
@@ -15,7 +20,7 @@ header {
 }
 
 h1 {
-    color: #901C1C;
+    color: var(--primary);
     margin-right: 100px;
 }
 
@@ -38,13 +43,31 @@ h1 {
     align-items: center;
     flex-direction: column;
 }
+.photographer_section article a {
+    text-decoration: none;
+    display: contents;
+}
 
 .photographer_section article h2 {
-    color: #D3573C;
+    color: var(--secondary);
     font-size: 36px;
+    margin-bottom: 0;
 }
 
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.photographer_section article p {
+    display: contents;
+}
+
+.address {
+    color: var(--primary);
+    font-weight: bold;
+}
+.price {
+    color: var(--tertiary)
 }

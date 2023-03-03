@@ -1,29 +1,41 @@
 function photographerFactory(data) {
     console.log(data);
-    const { name, portrait, city, country, tagline, price } = data;
+    const { name, portrait, city, country, tagline, price, id } = data;
 
     const picture = `assets/photographers/ID_Photos/${portrait}`;
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
         const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-        const h3 = document.createElement( 'h3' );
-        h3.textContent = city + ', ' + country;
+        const a = document.createElement('a');
         const p = document.createElement( 'p' );
-        p.textContent = tagline
-        const pPrice = document.createElement('p');
-        pPrice.textContent = price + '€/jour'
+        const text = {"address": city + ', ' + country, "tagline": tagline, "price": price + '€/jour'}
 
-        article.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(h3);
-        article.appendChild(p);
-        article.appendChild(pPrice);
+        setAttributes(img, {"src": picture, "alt": name})
+        setAttributes(a ,{"href": "./photographer.html?id="+ id, "aria-label": name, "alt": name})
+        h2.textContent = name;
+
+        //loop for text paragraph
+        for (const property in text) {
+            const span = document.createElement('span');
+            setAttributes(span, {"class": property});
+            span.textContent = text[property]
+            p.appendChild(span)
+        }
+
+        a.append(img, h2)
+        article.append(a,p)
+
         return (article);
     }
 
     return { name, picture, getUserCardDOM }
+}
+
+// loop for setAttribute
+function setAttributes(element, attrs) {
+    for(var key in attrs) {
+        element.setAttribute(key, attrs[key])
+    }
 }
