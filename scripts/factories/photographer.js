@@ -1,5 +1,4 @@
 function photographerFactory(data) {
-    console.log(document.URL);
     const { name, portrait, city, country, tagline, price, id } = data;
 
     const picture = `assets/photographers/ID_Photos/${portrait}`;
@@ -29,12 +28,7 @@ function photographerFactory(data) {
 
         return (article);
     }
-
-    if (document.URL.includes('?')) {
-
-    } else {
         return { name, picture, getUserCardDOM }
-    }
 }
 
 // loop for setAttribute
