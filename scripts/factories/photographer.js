@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-    console.log(data);
+    console.log(document.URL);
     const { name, portrait, city, country, tagline, price, id } = data;
 
     const picture = `assets/photographers/ID_Photos/${portrait}`;
@@ -12,7 +12,7 @@ function photographerFactory(data) {
         const p = document.createElement( 'p' );
         const text = {"address": city + ', ' + country, "tagline": tagline, "price": price + '€/jour'}
 
-        setAttributes(img, {"src": picture, "alt": name})
+        setAttributes(img, {"src": picture, "alt": "photo de profil de "+ name})
         setAttributes(a ,{"href": "./photographer.html?id="+ id, "aria-label": name, "alt": name})
         h2.textContent = name;
 
@@ -30,7 +30,11 @@ function photographerFactory(data) {
         return (article);
     }
 
-    return { name, picture, getUserCardDOM }
+    if (document.URL.includes('?')) {
+
+    } else {
+        return { name, picture, getUserCardDOM }
+    }
 }
 
 // loop for setAttribute
