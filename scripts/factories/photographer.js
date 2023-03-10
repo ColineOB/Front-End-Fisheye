@@ -51,19 +51,24 @@ function setAttributes(element, attrs) {
 
 //function 
 function mediaFactory(data, name) {
-    const { id, date, image, likes, price, title } = data;
+    const { id, date, image, video, likes, price, title } = data;
     const picture = `assets/photographers/${name}/${image}`
-    const ext = image.lastIndexOf('.');
-    console.log(image.split(ext)[1]);
-    console.log(data);
+    const movie = `assets/photographers/${name}/${video}`
     function getMediaCardDom() {
         const article = document.createElement( 'article' );
+        const a = document.createElement('a');
         const img = document.createElement( 'img' );
         const video = document.createElement('video');
 
-        setAttributes(img, {"src": picture, "alt": title + ' ' + date})
+        if(image) {
+            setAttributes(img, {"src": picture, "alt": title + ' ' + date})
+            a.append(img);
+        } else {
+            setAttributes(video, {"src": movie})
+            a.append(video);
+        }
 
-        article.append(img);
+        article.append(a);
         return article;
     }
 
