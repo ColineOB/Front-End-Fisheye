@@ -70,7 +70,7 @@ h1 {
     color: var(--primary);
     font-weight: bold;
 }
-.price {
+.photographers_section article p .price {
     color: var(--tertiary)
 }
 
@@ -84,12 +84,15 @@ h1 {
 .photograph-header article {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
 }
 
 .photograph-header article h2 {
     color: var(--secondary);
-    font-size: 36px;
-    margin-bottom: 0;
+    font-size: 60px;
+    font-weight: lighter;
+    margin: 0;
 }
 
 .photograph-header article img {
@@ -98,9 +101,26 @@ h1 {
     border-radius: 50%;
     object-fit: cover;
 }
+.photograph-header article div {
+    justify-content: center;
+}
+
 .photograph-header article p {
-    display: contents;
+    margin: 0;
 }
 .photograph-header article span {
     display: block;
+}
+.photograph-header article span.address {
+    font-size: 25px;
+    margin-bottom: 15px;
+    font-weight: lighter;
+}
+.photograph-header article span.price {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--secondary);
+    padding: 1em;
+    margin-right: 2em;
 }

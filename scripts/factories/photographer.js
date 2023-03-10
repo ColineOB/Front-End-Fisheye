@@ -42,9 +42,30 @@ function photographerFactory(data) {
     return { name, picture, getUserCardDOM }
 }
 
-// loop for setAttribute
+// loop for multiple setAttribute
 function setAttributes(element, attrs) {
     for(var key in attrs) {
         element.setAttribute(key, attrs[key])
     }
+}
+
+//function 
+function mediaFactory(data, name) {
+    const { id, date, image, likes, price, title } = data;
+    const picture = `assets/photographers/${name}/${image}`
+    const ext = image.lastIndexOf('.');
+    console.log(image.split(ext)[1]);
+    console.log(data);
+    function getMediaCardDom() {
+        const article = document.createElement( 'article' );
+        const img = document.createElement( 'img' );
+        const video = document.createElement('video');
+
+        setAttributes(img, {"src": picture, "alt": title + ' ' + date})
+
+        article.append(img);
+        return article;
+    }
+
+    return {getMediaCardDom}
 }

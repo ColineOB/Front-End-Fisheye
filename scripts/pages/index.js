@@ -17,6 +17,15 @@
         });
     };
 
+    async function displayMedia(medias, name) {
+        const querySelector = document.querySelector(".media_section");
+        medias.forEach((media) => {
+            const mediaModel = mediaFactory(media, name);
+            const mediaCardDom = mediaModel.getMediaCardDom();
+            querySelector.appendChild(mediaCardDom);
+        })
+    }
+
     async function init() {
         // Récupère les datas des photographes
         const { photographers, media } = await getPhotographers()
@@ -30,6 +39,7 @@
             let filterMedia = media.filter((item)=>item.photographerId == idPhotographer)
             querySelector = document.querySelector(".photograph-header");
             displayData(filterphotographer, querySelector);
+            displayMedia(filterMedia, filterphotographer[0].name.split(/-|\s/)[0])
         }
     };
     
