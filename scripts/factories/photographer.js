@@ -3,7 +3,7 @@ function photographerFactory(data) {
 
     const picture = `assets/photographers/ID_Photos/${portrait}`;
 
-    //function index page
+    //function index page test
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
