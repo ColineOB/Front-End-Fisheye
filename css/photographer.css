@@ -27,15 +27,17 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
 }
 
 .modal header {
+    align-items: baseline;
     justify-content: space-between;
     width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
 }
 
 .modal header img {
@@ -43,9 +45,10 @@
 }
 
 .modal header h2 {
+    margin: 0;
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
 }
 
 form {
@@ -73,4 +76,12 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 30px;
+}
+
+form textarea {
+    width: 100%;
+    height: 200px;
+    font-size: 30px;
+
 }

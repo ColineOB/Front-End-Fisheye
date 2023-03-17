@@ -19,8 +19,10 @@
 
     async function displayMedia(medias, name) {
         const querySelector = document.querySelector(".media_section");
+        let nblikes = 0;
         medias.forEach((media) => {
-            const mediaModel = mediaFactory(media, name);
+            nblikes = nblikes + media.likes;
+            const mediaModel = mediaFactory(media, name, nblikes);
             const mediaCardDom = mediaModel.getMediaCardDom();
             querySelector.appendChild(mediaCardDom);
         })
@@ -40,6 +42,7 @@
             querySelector = document.querySelector(".photograph-header");
             displayData(filterphotographer, querySelector);
             displayMedia(filterMedia, filterphotographer[0].name.split(/-|\s/)[0])
+            displayForm(filterphotographer[0].name)
         }
     };
     

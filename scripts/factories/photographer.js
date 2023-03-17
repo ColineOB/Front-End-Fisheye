@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-    const { name, portrait, city, country, tagline, price, id } = data;
+    const { name, portrait, city, country, tagline, price, likes, id } = data;
 
     const picture = `assets/photographers/ID_Photos/${portrait}`;
 
@@ -11,29 +11,32 @@ function photographerFactory(data) {
         const a = document.createElement('a');
         const p = document.createElement( 'p' );
         const div = document.createElement( 'div' );
+        const divPrice = document.createElement('div');
+        const spanLikes = document.createElement('span');
+        const heart = document.createElement ('i');
         const button = document.querySelector('.contact_button')
-        const text = {"address": city + ', ' + country, "tagline": tagline, "price": price + '€/jour'}
+        const textPhotographer1 = {"address": city + ', ' + country, "tagline": tagline}
+        const textPhotographer2 = {"price": price + '€/jour'}
+        const textIndex = {...textPhotographer1,...textPhotographer2}
 
         setAttributes(img, {"src": picture, "alt": "photo de profil de "+ name})
         setAttributes(a ,{"href": "./photographer.html?id="+ id, "aria-label": name, "alt": name})
-        h2.textContent = name;
+        setAttributes(divPrice,{"class": "divprice"})
+        setAttributes(spanLikes,{"class": "totalLikes"})
+        setAttributes(heart, {'class': "fa-solid fa-heart"})
 
-        //loop for text paragraph
-        for (const property in text) {
-            const span = document.createElement('span');
-            setAttributes(span, {"class": property});
-            span.textContent = text[property]
-            p.appendChild(span)
-        }
+        h2.textContent = name;
+        p.append(heart);
+        divPrice.append(spanLikes, p, createParagraph(textPhotographer2))
         
         const idPhotographer = document.URL.split("?id=")[1]
         
         if (idPhotographer == undefined) {
             a.append(img, h2)
-            article.append(a,p)
+            article.append(a,createParagraph(textIndex))
         } else {
-            div.append(h2,p)
-            article.append(div,button,img)
+            div.append(h2,createParagraph(textPhotographer1))
+            article.append(div,button,img, divPrice)
         }
         return (article);
     }
@@ -49,28 +52,16 @@ function setAttributes(element, attrs) {
     }
 }
 
-//function 
-function mediaFactory(data, name) {
-    const { id, date, image, video, likes, price, title } = data;
-    const picture = `assets/photographers/${name}/${image}`
-    const movie = `assets/photographers/${name}/${video}`
-    function getMediaCardDom() {
-        const article = document.createElement( 'article' );
-        const a = document.createElement('a');
-        const img = document.createElement( 'img' );
-        const video = document.createElement('video');
-
-        if(image) {
-            setAttributes(img, {"src": picture, "alt": title + ' ' + date})
-            a.append(img);
-        } else {
-            setAttributes(video, {"src": movie})
-            a.append(video);
-        }
-
-        article.append(a);
-        return article;
+//loop for text paragraph
+function createParagraph(obj){
+    const p = document.createElement( 'p' );
+    for (const property in obj) {
+        const span = document.createElement('span');
+        setAttributes(span, {"class": property});
+        span.textContent = obj[property]
+        p.appendChild(span)
     }
-
-    return {getMediaCardDom}
+    return p
 }
+
+
