@@ -1,6 +1,5 @@
 //media display
 function mediaFactory(data, name, totalLikes) {
-    console.log(data);
     const { id, date, image, video, likes, price, title } = data;
     const picture = `assets/photographers/${name}/${image}`
     const movie = `assets/photographers/${name}/${video}`
@@ -24,7 +23,7 @@ function mediaFactory(data, name, totalLikes) {
         divDescriptionImg.append(h2,p);
 
         if(image) {
-            setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id})
+            setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id, "onclick": `clickPicture(this)`})
             article.append(img, divDescriptionImg);
         } else {
             setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", 'data-id': id })
