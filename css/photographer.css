@@ -85,3 +85,22 @@ form textarea {
     font-size: 30px;
 
 }
+
+.formData[data-error]::after {
+    content: attr(data-error);
+    font-size: 1em;
+    color: var(--primary);
+    display: block;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    text-align: right;
+    line-height: 0.3;
+    opacity: 0;
+    transition: 0.3s;
+  }
+  .formData[data-error-visible="true"]::after {
+    opacity: 1;
+  }
+  .formData[data-error-visible="true"] .text-control {
+    border: 4px solid var(--primary);
+  }
