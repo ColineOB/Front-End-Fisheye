@@ -4,9 +4,61 @@
 
 .photograph-header {
     background-color: #FAFAFA;
+    gap: 70px;
+    margin-top: 100px;
     height: 300px;
     margin: 0 100px;
 }
+
+.photograph-header article {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.photograph-header article h2{
+    color: var(--secondary);
+    font-size: 60px;
+    font-weight: lighter;
+    margin: 0;
+}
+
+.photograph-header article img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.photograph-header article div {
+    justify-content: center;
+}
+
+.photograph-header article p {
+    margin: 0;
+}
+.photograph-header article span {
+    display: block;
+}
+.photograph-header article span.address, .media_section h2 {
+    font-size: 25px;
+    margin-bottom: 15px;
+    font-weight: lighter;
+    color: var(--primary);
+}
+.photograph-header article .divprice {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: var(--secondary);
+    padding: 1em;
+    margin-right: 2em;
+    display: flex;
+    font-weight: bold;
+}
+.photograph-header article .divprice p {
+    margin: 0 20px 0 5px;
+} 
 
 .contact_button {
     font-size: 20px;
@@ -19,6 +71,45 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.media_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.media_section article {
+    display: grid;
+    justify-items: center;
+    margin-bottom: 50px;
+}
+.media_section article img, .media_section article video{
+    height: 350px;
+    width: 350px;
+    object-fit: cover;
+}
+.media_section article .descriptionImg {
+    display: flex;
+    width: 350px;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.media_section article i {
+    margin-left: 5px;
+    color: var(--primary);
+    cursor: pointer;
+}
+.media_section article img {
+    cursor: pointer;
+}
+/** contact_modal **/
+
+#contact_modal {
+    position: absolute;
+    margin: auto;
+    top:50px;
+    left: 0;
+    right: 0;
 }
 
 .modal {
@@ -103,4 +194,13 @@ form textarea {
   }
   .formData[data-error-visible="true"] .text-control {
     border: 4px solid var(--primary);
+  }
+  /** lightbox **/
+  #lightbox img {
+    position: absolute;
+    margin: auto;
+    top: 200px;
+    left: 0;
+    right: 0;
+    height: 500px;
   }

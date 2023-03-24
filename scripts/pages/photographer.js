@@ -1,5 +1,6 @@
-//function 
+//media display
 function mediaFactory(data, name, totalLikes) {
+    console.log(data);
     const { id, date, image, video, likes, price, title } = data;
     const picture = `assets/photographers/${name}/${image}`
     const movie = `assets/photographers/${name}/${video}`
@@ -10,23 +11,26 @@ function mediaFactory(data, name, totalLikes) {
         const video = document.createElement('video');
         const h2 = document.createElement( 'h2' );
         const p = document.createElement('p');
+        const heart = document.createElement ('i');
         const divDescriptionImg = document.createElement('div');
 
         
+        setAttributes(divDescriptionImg, {"class": "descriptionImg"})
+        setAttributes(heart, {'class': "fa-solid fa-heart"})
+
         h2.textContent = title;
         p.textContent = likes;
+        p.append(heart)
         divDescriptionImg.append(h2,p);
-        setAttributes(divDescriptionImg, {"class": "descriptionImg"})
 
         if(image) {
-            setAttributes(img, {"src": picture, "alt": title + ' ' + date})
-            a.append(img);
+            setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id})
+            article.append(img, divDescriptionImg);
         } else {
-            setAttributes(video, {"src": movie})
-            a.append(video);
+            setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", 'data-id': id })
+            article.append(video, divDescriptionImg);
         }
         document.querySelector('.totalLikes').innerHTML = totalLikes;
-        article.append(a, divDescriptionImg);
         return article;
     }
 

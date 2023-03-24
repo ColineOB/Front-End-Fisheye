@@ -43,6 +43,17 @@
             displayData(filterphotographer, querySelector);
             displayMedia(filterMedia, filterphotographer[0].name.split(/-|\s/)[0])
             displayForm(filterphotographer[0].name)
+            // if click
+            var pictures = document.querySelectorAll(".picture");
+            console.log(pictures);
+            for (let i = 0; i < pictures.length; i++) {
+                pictures[i].addEventListener("click", function() {
+                    clickPicture(pictures[i].dataset.id, filterMedia, filterphotographer[0].name.split(/-|\s/)[0])
+                    })
+            }
+            // pictures.addEventListener("click", function(filterMedia) {
+            //     console.log("coucou");
+            // })
         }
     };
     

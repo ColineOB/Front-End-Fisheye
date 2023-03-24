@@ -16,7 +16,7 @@ function displayForm(name) {
     const button = document.createElement('button');
     const inputType = {"Prénom": 'input', "Nom": 'input', 'Email': 'input', 'Votre message': 'textarea'}
 
-    setAttributes(button,{"class":"contact_button", "onclick": 'valide()'})
+    setAttributes(button,{"class":"contact_button", "onclick": 'valid()'})
     button.textContent = "Envoyer";
 
     header.append(name)
@@ -41,13 +41,13 @@ function createForm(obj) {
 }
 
 //if click on valid button 
-function valide() {
+function valid() {
     const input = document.querySelectorAll('input');
     const textarea = document.querySelector('textarea');
     const formData = document.querySelectorAll(".formData");
     var valide = true;
+    
     for (let i = 0; i < formData.length; i++) {
-        console.log(formData[i]);
       formData[i].dataset.errorVisible = false;
       valide = true;
     }
@@ -68,7 +68,6 @@ function valide() {
                 break;
         }
     }
-    
     if (textarea.value  == "") {
         errorMessage('Champ obligatoire', textarea.parentElement)
     }
