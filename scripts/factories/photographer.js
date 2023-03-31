@@ -18,6 +18,7 @@ function photographerFactory(data) {
         const textPhotographer1 = {"address": city + ', ' + country, "tagline": tagline}
         const textPhotographer2 = {"price": price + '€/jour'}
         const textIndex = {...textPhotographer1,...textPhotographer2}
+        const options = {"option1": "Popularité", "option2": "Date", "option3": "titre"}
 
         setAttributes(img, {"src": picture, "alt": "photo de profil de "+ name})
         setAttributes(a ,{"href": "./photographer.html?id="+ id, "aria-label": name, "alt": name})
@@ -36,7 +37,7 @@ function photographerFactory(data) {
             article.append(a,createParagraph(textIndex))
         } else {
             div.append(h2,createParagraph(textPhotographer1))
-            article.append(div,button,img, divPrice)
+            article.append(div,button,img, createFilter(options), divPrice)
         }
         return (article);
     }
@@ -53,6 +54,18 @@ function setAttributes(element, attrs) {
 }
 
 //loop for text paragraph
+function createFilter(obj){
+    const select = document.createElement('select');
+    for (const property in obj) {
+        const option = document.createElement('option');
+        setAttributes(option, {"value": property});
+        option.textContent = obj[property]
+        select.appendChild(option)
+    }
+    return select
+}
+
+//loop for select
 function createParagraph(obj){
     const p = document.createElement( 'p' );
     for (const property in obj) {
@@ -62,6 +75,34 @@ function createParagraph(obj){
         p.appendChild(span)
     }
     return p
+}
+
+function sortMedia(medias) {
+    select = document.querySelector('select')
+    console.log(medias, medias.sort());
+    let newArray = [];
+    select.addEventListener("change", () => {
+        switch (select.value) {
+            case 'option1':
+                    newArray = sortBy('likes')
+                break
+            case 'option2':
+                    newArray = sortBy('dates')
+                break
+            case 'option3':
+                    newArray = sortBy('title')
+                break
+        }
+        console.log(newArray);
+        return newArray;
+    })
+    function sortBy(property) {
+        return medias.sort((a,b) => {
+            return a[property] >= b[property]
+            ? 1
+            : -1
+        })
+    }
 }
 
 

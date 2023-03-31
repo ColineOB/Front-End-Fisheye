@@ -1,45 +1,78 @@
-function clickPicture(element) {
-    const media_section = document.querySelector('.media_section');
-    const images = media_section.querySelectorAll('img');
-    const arrImages = Array.from(images);
-    const main = document.querySelector('#main');
-    const lightbox = document.getElementById("lightbox");
-    lightbox.style.display = "block";
-    main.style.display = "none";
-    const index = arrImages.findIndex(e => e.dataset.id == element.dataset.id );
-    
-    const close = document.createElement('i');
-    const h2 = document.createElement('h2');
-    const previous = document.createElement('i');
-    const next = document.createElement('i');
+const main = document.querySelector('#main');
+const lightbox = document.getElementById("lightbox");
 
-    lightbox.append(element)
+
+function closelightbox() {
+    while (lightbox.firstChild) {
+        lightbox.removeChild(lightbox.firstChild)
+    }
+    lightbox.style.display = "none";
+    main.style.display = "block";
 }
 
-// function clickPicture(idPicture, data, name) {
-//     const media_section = document.querySelector('#main');
-//     const lightbox = document.getElementById("lightbox");
-//     lightbox.style.display = "block";
-//     media_section.style.display = "none";
-
-//     const result = data.filter(e => e.id == idPicture);
-//     const index = data.findIndex(e => e.id == idPicture);
-//     console.log(result);
-
-//     const { id, date, image, video, likes, price, title } = result[0];
-//     const picture = `assets/photographers/${name}/${image}`
-//     const movie = `assets/photographers/${name}/${video}`
-
+function clickPicture(element) {
+    const media_section = document.querySelector('.media_section');
+    const images = media_section.querySelectorAll('.picture');
+    const arrImages = Array.from(images);
+    lightbox.style.display = "block";
+    main.style.display = "none";
+    let index = arrImages.findIndex(e => e.dataset.id == element );
+    const img = arrImages[index].cloneNode(true)
+    const close = document.createElement('i');
+    const h2 = document.createElement('h2');
+    const div = document.createElement('div');
+    const previous = document.createElement('i');
+    const next = document.createElement('i');
     
-//     const close = document.createElement('i');
-//     const img = document.createElement('img');
-//     const h2 = document.createElement('h2');
-//     const previous = document.createElement('i');
-//     const next = document.createElement('i');
+    setAttributes(previous, {'class': "fa-solid fa-chevron-left"})
+    setAttributes(next, {'class': "fa-solid fa-chevron-right"})
+    setAttributes(div, {'class': "carrousel"})
+    img.removeAttribute("onclick")
 
+    div.append(previous, img, next);
+    lightbox.append(div);
 
-//     setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id})
-//     console.log();
-//     lightbox.append(img)
-//     console.log(idPicture, result, index);
-// }
+    next.onclick = function() {
+       carroussel('+', arrImages, index)
+    }
+
+    previous.onclick = function() {
+        carroussel('-', arrImages, index)
+     }
+
+    document.onkeydown = function(e) {
+        switch (e.keyCode) {
+            case 37:
+                carroussel('-', arrImages, index)
+                break;
+            case 39:
+                carroussel('+', arrImages, index)
+                break;
+            case 27:
+                closelightbox()
+        }
+    }
+}
+
+function carroussel(symbole, array) {
+    let carroussel = document.querySelector('.carrousel > img, .carrousel > video')
+    let index = array.findIndex(e => e.dataset.id == carroussel.dataset.id );
+    console.log(array.length);
+    let newIndex = "";
+    if (symbole == "+") {
+        newIndex = index +1;
+        if (newIndex > array.length -1) {
+            newIndex = 0;
+        }
+    } else {
+        newIndex = index -1;
+        console.log("newIndex", newIndex);
+        if (newIndex < 0) {
+            newIndex = array.length -1;
+        } 
+    }
+    console.log(newIndex);
+    let newImg = array[newIndex].cloneNode(true)
+    newImg.removeAttribute("onclick");
+    carroussel.replaceWith(newImg)
+}

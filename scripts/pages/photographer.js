@@ -23,10 +23,10 @@ function mediaFactory(data, name, totalLikes) {
         divDescriptionImg.append(h2,p);
 
         if(image) {
-            setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id, "onclick": `clickPicture(this)`})
+            setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id, "onclick": `clickPicture(${id})`})
             article.append(img, divDescriptionImg);
         } else {
-            setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", 'data-id': id })
+            setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", 'data-id': id, "onclick": `clickPicture(${id})` })
             article.append(video, divDescriptionImg);
         }
         document.querySelector('.totalLikes').innerHTML = totalLikes;
