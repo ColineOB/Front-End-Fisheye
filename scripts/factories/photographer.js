@@ -79,7 +79,7 @@ function createParagraph(obj){
 
 function sortMedia(medias) {
     select = document.querySelector('select')
-    console.log(medias, medias.sort());
+    console.log(medias, select);
     let newArray = [];
     select.addEventListener("change", () => {
         switch (select.value) {
@@ -92,8 +92,11 @@ function sortMedia(medias) {
             case 'option3':
                     newArray = sortBy('title')
                 break
+            default :
+                    newArray = medias;
         }
-        console.log(newArray);
+        console.log("newArray", newArray);
+        init(newArray);
         return newArray;
     })
     function sortBy(property) {

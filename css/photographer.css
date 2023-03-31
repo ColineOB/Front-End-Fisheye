@@ -87,6 +87,7 @@
     height: 350px;
     width: 350px;
     object-fit: cover;
+    cursor: pointer;
 }
 .media_section article .descriptionImg {
     display: flex;
@@ -97,9 +98,6 @@
 .media_section article i {
     margin-left: 5px;
     color: var(--primary);
-    cursor: pointer;
-}
-.media_section article img {
     cursor: pointer;
 }
 /** contact_modal **/

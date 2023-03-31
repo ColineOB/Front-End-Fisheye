@@ -26,7 +26,7 @@ function mediaFactory(data, name, totalLikes) {
             setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id, "onclick": `clickPicture(${id})`})
             article.append(img, divDescriptionImg);
         } else {
-            setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", 'data-id': id, "onclick": `clickPicture(${id})` })
+            setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", "controls": "controls", 'data-id': id, "onclick": `clickPicture(${id})` })
             article.append(video, divDescriptionImg);
         }
         document.querySelector('.totalLikes').innerHTML = totalLikes;

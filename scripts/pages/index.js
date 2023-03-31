@@ -28,7 +28,8 @@
         })
     }
 
-    async function init() {
+    async function init(array) {
+        
         // Récupère les datas des photographes
         const { photographers, media } = await getPhotographers()
         let querySelector = "";
@@ -41,8 +42,11 @@
             let filterMedia = media.filter((item)=>item.photographerId == idPhotographer)
             querySelector = document.querySelector(".photograph-header");
             displayData(filterphotographer, querySelector);
-            let sort = sortMedia(filterMedia);
-            displayMedia(filterMedia, filterphotographer[0].name.split(/-|\s/)[0])
+            if (array == undefined) {
+                array = filterMedia;
+            } 
+            displayMedia(array, filterphotographer[0].name.split(/-|\s/)[0])
+            sortMedia(filterMedia,  filterphotographer[0].name.split(/-|\s/)[0]);
             displayForm(filterphotographer[0].name)
         }
     };

@@ -17,17 +17,17 @@ function clickPicture(element) {
     lightbox.style.display = "block";
     main.style.display = "none";
     let index = arrImages.findIndex(e => e.dataset.id == element );
-    const img = arrImages[index].cloneNode(true)
+    const img = arrImages[index].cloneNode(true);
     const close = document.createElement('i');
     const h2 = document.createElement('h2');
     const div = document.createElement('div');
     const previous = document.createElement('i');
     const next = document.createElement('i');
     
-    setAttributes(previous, {'class': "fa-solid fa-chevron-left"})
-    setAttributes(next, {'class': "fa-solid fa-chevron-right"})
-    setAttributes(div, {'class': "carrousel"})
-    img.removeAttribute("onclick")
+    setAttributes(previous, {'class': "fa-solid fa-chevron-left"});
+    setAttributes(next, {'class': "fa-solid fa-chevron-right"});
+    setAttributes(div, {'class': "carrousel"});
+    img.removeAttribute("onclick");
 
     div.append(previous, img, next);
     lightbox.append(div);
