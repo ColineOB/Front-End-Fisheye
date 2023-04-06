@@ -15,7 +15,7 @@ function mediaFactory(data, name, totalLikes) {
 
         
         setAttributes(divDescriptionImg, {"class": "descriptionImg"})
-        setAttributes(heart, {'class': "fa-solid fa-heart"})
+        setAttributes(heart, {'class': "fa-solid fa-heart", 'onclick': 'like(this)'})
 
         h2.textContent = title;
         p.textContent = likes;
@@ -23,15 +23,22 @@ function mediaFactory(data, name, totalLikes) {
         divDescriptionImg.append(h2,p);
 
         if(image) {
-            setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id, "onclick": `clickPicture(${id})`})
+            setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id, 'data-title': title, "onclick": `clickPicture(${id})`})
             article.append(img, divDescriptionImg);
         } else {
-            setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", "controls": "controls", 'data-id': id, "onclick": `clickPicture(${id})` })
+            setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", "controls": "controls", 'data-id': id, 'data-title': title, "onclick": `clickPicture(${id})` })
             article.append(video, divDescriptionImg);
         }
         document.querySelector('.totalLikes').innerHTML = totalLikes;
         return article;
     }
-
     return {getMediaCardDom}
+}
+
+function like(elem) {
+    const totalLikes = document.querySelector('.totalLikes');
+    let like = elem.parentNode;
+    like.innerHTML = parseInt(like.innerHTML) + 1;
+    totalLikes.innerHTML = parseInt(totalLikes.innerHTML) + 1;
+    like.append(elem)
 }

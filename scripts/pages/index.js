@@ -8,10 +8,10 @@
         throw new Error('Error', r.status)
     }
 
-    async function displayData(photographers, photographersSection) {
+    async function displayData(photographers, photographersSection, select) {
 
         photographers.forEach((photographer) => {
-            const photographerModel = photographerFactory(photographer);
+            const photographerModel = photographerFactory(photographer, select);
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
         });
@@ -28,25 +28,30 @@
         })
     }
 
-    async function init(array) {
-        
+    async function init(array, select) {
         // Récupère les datas des photographes
         const { photographers, media } = await getPhotographers()
         let querySelector = "";
         const idPhotographer = document.URL.split("?id=")[1]
         if (idPhotographer == undefined) {
+            //create index
             querySelector = document.querySelector(".photographers_section");
-            displayData(photographers, querySelector);
+            displayData(photographers, querySelector, '');
         } else {
+            //create photographer
             let filterphotographer = photographers.filter((item)=>item.id == idPhotographer)
             let filterMedia = media.filter((item)=>item.photographerId == idPhotographer)
+            let sortPopularMedia = filterMedia.sort((a,b) => ( a.likes < b.likes) ? 1 : -1)
             querySelector = document.querySelector(".photograph-header");
-            displayData(filterphotographer, querySelector);
+            let media_section = document.querySelector(".media_section");
+            querySelector.innerHTML = "";
+            media_section.innerHTML = "";
+            displayData(filterphotographer, querySelector, select);
             if (array == undefined) {
-                array = filterMedia;
+                array = sortPopularMedia;
             } 
             displayMedia(array, filterphotographer[0].name.split(/-|\s/)[0])
-            sortMedia(filterMedia,  filterphotographer[0].name.split(/-|\s/)[0]);
+            sortMedia(filterMedia);
             displayForm(filterphotographer[0].name)
         }
     };
