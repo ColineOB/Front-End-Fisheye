@@ -32,12 +32,7 @@
         // Récupère les datas des photographes
         const { photographers, media } = await getPhotographers()
         let querySelector = "";
-        let idPhotographer = "";
-        if(document.URL.slice(-1) == "#") {
-            idPhotographer = document.URL.split("?id=")[1].slice(0, -1)
-        } else {
-            idPhotographer = document.URL.split("?id=")[1]
-        }
+        let idPhotographer = document.URL.split("?id=")[1]
         if (idPhotographer == undefined) {
             //create index
             querySelector = document.querySelector(".photographers_section");
@@ -49,8 +44,11 @@
             let sortPopularMedia = filterMedia.sort((a,b) => ( a.likes < b.likes) ? 1 : -1)
             querySelector = document.querySelector(".photograph-header");
             let media_section = document.querySelector(".media_section");
+            let contact_modal = document.querySelector(".modal");
+            //clean
             querySelector.innerHTML = "";
             media_section.innerHTML = "";
+            contact_modal.innerHTML = "";
             displayData(filterphotographer, querySelector, select);
             if (array == undefined) {
                 array = sortPopularMedia;

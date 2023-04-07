@@ -17,7 +17,7 @@ function mediaFactory(data, name, totalLikes) {
         
         setAttributes(divDescriptionImg, {"class": "descriptionImg"})
         setAttributes(heart, {'class': "fa-solid fa-heart",})
-        setAttributes(aPicture ,{"href": "javascript:void(0)", "onclick": `clickPicture(${id})`});
+        setAttributes(aPicture ,{"href": `javascript:document.getElementById("${title}").focus()`, "onclick": `clickPicture(${id})`});
         setAttributes(aLikes ,{"href": "javascript:void(0)", 'onclick': 'like(this)', 'aria-label': 'likes'});
 
         h2.textContent = title;
@@ -27,10 +27,10 @@ function mediaFactory(data, name, totalLikes) {
         divDescriptionImg.append(h2,p);
 
         if(image) {
-            setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id, 'data-title': title,})
+            setAttributes(img, {"src": picture, "id": title, "alt": title + ' ' + date, "class": "picture", 'data-id': id, 'data-title': title,})
             aPicture.append(img)
         } else {
-            setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", "controls": "controls", 'data-id': id, 'data-title': title,  })
+            setAttributes(video, {"src": movie, "id": title, "alt": title + ' ' + date, "class": "picture", "controls": "controls", 'data-id': id, 'data-title': title,  })
             aPicture.append(video)
         }
         article.append(aPicture, divDescriptionImg);

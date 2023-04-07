@@ -11,7 +11,9 @@ function photographerFactory(data, optionSelect) {
         const h2 = document.createElement( 'h2' );
         const a = document.createElement('a');
         const p = document.createElement( 'p' );
-        const div = document.createElement( 'div' );
+        const trierPar = document.createElement('p');
+        const divSort = document.createElement('div');
+        const div = document.createElement('div');
         const divPrice = document.createElement('div');
         const spanLikes = document.createElement('span');
         const heart = document.createElement ('i');
@@ -27,10 +29,12 @@ function photographerFactory(data, optionSelect) {
         setAttributes(spanLikes,{"class": "totalLikes"});
         setAttributes(heart, {'class': "fa-solid fa-heart", 'alt': 'like'});
         setAttributes(button, {'class': 'contact_button', 'onclick': 'displayModal()'});
+        divSort.setAttribute('class','sort')
         
         h1.textContent = name;
         h2.textContent = name;
         button.textContent = 'Contactez-moi';
+        trierPar.textContent = "Trier par";
         p.append(heart);
         divPrice.append(spanLikes, p, createParagraph(textPhotographer2))
         
@@ -40,7 +44,6 @@ function photographerFactory(data, optionSelect) {
         if (optionSelect !== undefined) {
             select.value = optionSelect;
         }
-        
         if (idPhotographer == undefined) {
             // index.html
             a.append(img, h2)
@@ -48,7 +51,8 @@ function photographerFactory(data, optionSelect) {
         } else {
             // photographer.html
             div.append(h1,createParagraph(textPhotographer1))
-            article.append(div, button, img, select, divPrice)
+            divSort.append(trierPar, select)
+            article.append(div, button, img, divSort, divPrice)
         }
         return (article);
     }
@@ -70,7 +74,7 @@ function createFilter(obj){
     setAttributes(select, {'aria-label':'trier par'})
     for (const property in obj) {
         const option = document.createElement('option');
-        setAttributes(option, {"value": property});
+        setAttributes(option, {"value": property, "style": "padding: 20px"});
         option.textContent = obj[property]
         select.appendChild(option)
     }

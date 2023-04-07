@@ -58,7 +58,23 @@
 }
 .photograph-header article .divprice p {
     margin: 0 20px 0 5px;
-} 
+}
+
+.sort {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.sort select {
+    margin-left: 15px;
+    background-color: var(--primary);
+    color: white;
+    font-size: 20px;
+    padding: 1em 1.5em;
+    border: 0;
+    outline: none;
+}
 
 .contact_button {
     font-size: 20px;

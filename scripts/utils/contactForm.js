@@ -12,15 +12,21 @@ function closeModal() {
 
 function displayForm(name) {
     const querySelector = document.querySelector(".modal");
-    const header = querySelector.querySelector("h2");
+    const header = document.createElement('header');
+    const h2 = document.createElement('h2');
+    const br = document.createElement('br');
+    const img = document.createElement('img');
     const button = document.createElement('button');
     const inputType = {"Prénom": 'input', "Nom": 'input', 'Email': 'input', 'Votre message': 'textarea'}
 
     setAttributes(button,{"class":"contact_button", "onclick": 'valid()'})
+    setAttributes(img, {"src":"assets/icons/close.svg", "alt":"close", "onclick":"closeModal()"})
     button.textContent = "Envoyer";
 
-    header.append(name)
-    querySelector.append(createForm(inputType), button);
+    h2.textContent = 'Contactez-moi'
+    h2.append(br, name)
+    header.append(h2, img)
+    querySelector.append(header, createForm(inputType), button);
 
     document.onkeydown = function(e) {
         if(e.keyCode == 27) {
