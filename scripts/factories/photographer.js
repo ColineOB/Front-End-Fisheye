@@ -7,6 +7,7 @@ function photographerFactory(data, optionSelect) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
+        const h1 = document.createElement('h1');
         const h2 = document.createElement( 'h2' );
         const a = document.createElement('a');
         const p = document.createElement( 'p' );
@@ -24,9 +25,10 @@ function photographerFactory(data, optionSelect) {
         setAttributes(a ,{"href": "./photographer.html?id="+ id, "aria-label": name, "alt": name});
         setAttributes(divPrice,{"class": "divprice"});
         setAttributes(spanLikes,{"class": "totalLikes"});
-        setAttributes(heart, {'class': "fa-solid fa-heart"});
+        setAttributes(heart, {'class': "fa-solid fa-heart", 'alt': 'like'});
         setAttributes(button, {'class': 'contact_button', 'onclick': 'displayModal()'});
-
+        
+        h1.textContent = name;
         h2.textContent = name;
         button.textContent = 'Contactez-moi';
         p.append(heart);
@@ -45,7 +47,7 @@ function photographerFactory(data, optionSelect) {
             article.append(a,createParagraph(textIndex))
         } else {
             // photographer.html
-            div.append(h2,createParagraph(textPhotographer1))
+            div.append(h1,createParagraph(textPhotographer1))
             article.append(div, button, img, select, divPrice)
         }
         return (article);
@@ -65,6 +67,7 @@ function setAttributes(element, attrs) {
 //loop for text paragraph
 function createFilter(obj){
     const select = document.createElement('select');
+    setAttributes(select, {'aria-label':'trier par'})
     for (const property in obj) {
         const option = document.createElement('option');
         setAttributes(option, {"value": property});

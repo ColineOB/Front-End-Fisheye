@@ -22,6 +22,11 @@ function displayForm(name) {
     header.append(name)
     querySelector.append(createForm(inputType), button);
 
+    document.onkeydown = function(e) {
+        if(e.keyCode == 27) {
+            closeModal()
+        }
+    }
 }
 
 // Create form
@@ -34,7 +39,8 @@ function createForm(obj) {
         setAttributes(div,{"class":"formData","data-error":"error","data-error-visible":"false"})
         setAttributes(input,{"name":property, "class":"text-control"})
         label.textContent = property;
-        div.append(label, input)
+        label.append(input)
+        div.append(label)
         form.append(div);
     }
     return form

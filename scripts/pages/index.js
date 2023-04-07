@@ -32,7 +32,12 @@
         // Récupère les datas des photographes
         const { photographers, media } = await getPhotographers()
         let querySelector = "";
-        const idPhotographer = document.URL.split("?id=")[1]
+        let idPhotographer = "";
+        if(document.URL.slice(-1) == "#") {
+            idPhotographer = document.URL.split("?id=")[1].slice(0, -1)
+        } else {
+            idPhotographer = document.URL.split("?id=")[1]
+        }
         if (idPhotographer == undefined) {
             //create index
             querySelector = document.querySelector(".photographers_section");

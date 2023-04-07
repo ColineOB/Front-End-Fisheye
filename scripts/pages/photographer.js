@@ -5,7 +5,8 @@ function mediaFactory(data, name, totalLikes) {
     const movie = `assets/photographers/${name}/${video}`
     function getMediaCardDom() {
         const article = document.createElement( 'article' );
-        const a = document.createElement('a');
+        const aPicture = document.createElement('a');
+        const aLikes = document.createElement('a');
         const img = document.createElement( 'img' );
         const video = document.createElement('video');
         const h2 = document.createElement( 'h2' );
@@ -15,26 +16,31 @@ function mediaFactory(data, name, totalLikes) {
 
         
         setAttributes(divDescriptionImg, {"class": "descriptionImg"})
-        setAttributes(heart, {'class': "fa-solid fa-heart", 'onclick': 'like(this)'})
+        setAttributes(heart, {'class': "fa-solid fa-heart",})
+        setAttributes(aPicture ,{"href": "#", "onclick": `clickPicture(${id})`, 'aria-label': title + ' ' + date});
+        setAttributes(aLikes ,{"href": "#", 'onclick': 'like(this)', 'aria-label': 'like'});
 
         h2.textContent = title;
         p.textContent = likes;
-        p.append(heart)
+        aLikes.append(heart)
+        p.append(aLikes )
         divDescriptionImg.append(h2,p);
 
         if(image) {
-            setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id, 'data-title': title, "onclick": `clickPicture(${id})`})
-            article.append(img, divDescriptionImg);
+            setAttributes(img, {"src": picture, "alt": title + ' ' + date, "class": "picture", 'data-id': id, 'data-title': title,})
+            aPicture.append(img)
         } else {
-            setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", "controls": "controls", 'data-id': id, 'data-title': title, "onclick": `clickPicture(${id})` })
-            article.append(video, divDescriptionImg);
+            setAttributes(video, {"src": movie, "alt": title + ' ' + date, "class": "picture", "controls": "controls", 'data-id': id, 'data-title': title,  })
+            aPicture.append(video)
         }
+        article.append(aPicture, divDescriptionImg);
         document.querySelector('.totalLikes').innerHTML = totalLikes;
         return article;
     }
     return {getMediaCardDom}
 }
 
+//if like
 function like(elem) {
     const totalLikes = document.querySelector('.totalLikes');
     let like = elem.parentNode;
