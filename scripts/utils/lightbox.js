@@ -1,7 +1,6 @@
 const main = document.querySelector('#main');
 const lightbox = document.getElementById("lightbox");
 
-
 function closelightbox() {
     while (lightbox.firstChild) {
         lightbox.removeChild(lightbox.firstChild)
@@ -28,11 +27,11 @@ function clickPicture(element) {
     const previous = document.createElement('i');
     const next = document.createElement('i');
     
-    setAttributes(previous, {'class': "fa-solid fa-chevron-left"});
-    setAttributes(next, {'class': "fa-solid fa-chevron-right"});
+    setAttributes(previous, {'class': "fa-solid fa-chevron-left", 'aria-label':'Previous image'});
+    setAttributes(next, {'class': "fa-solid fa-chevron-right", 'aria-label':'Next image'});
     setAttributes(div, {'class': "carrousel"});
     setAttributes(divRight, {'class': "divRight"});
-    setAttributes(close, {'class': "fa-solid fa-xmark", 'onclick':'closelightbox()', 'id':'close'})
+    setAttributes(close, {'class': "fa-solid fa-xmark", 'onclick':'closelightbox()', 'id':'close', 'aria-label':'Close Dialog'})
     img.removeAttribute("onclick");
     
     h2.textContent = img.dataset.title;

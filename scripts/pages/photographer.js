@@ -17,8 +17,8 @@ function mediaFactory(data, name, totalLikes) {
         
         setAttributes(divDescriptionImg, {"class": "descriptionImg"})
         setAttributes(heart, {'class': "fa-solid fa-heart",})
-        setAttributes(aPicture ,{"href": "#", "onclick": `clickPicture(${id})`, 'aria-label': title + ' ' + date});
-        setAttributes(aLikes ,{"href": "#", 'onclick': 'like(this)', 'aria-label': 'like'});
+        setAttributes(aPicture ,{"href": "javascript:void(0)", "onclick": `clickPicture(${id})`});
+        setAttributes(aLikes ,{"href": "javascript:void(0)", 'onclick': 'like(this)', 'aria-label': 'likes'});
 
         h2.textContent = title;
         p.textContent = likes;
@@ -42,9 +42,12 @@ function mediaFactory(data, name, totalLikes) {
 
 //if like
 function like(elem) {
+    let heart = elem;
     const totalLikes = document.querySelector('.totalLikes');
     let like = elem.parentNode;
     like.innerHTML = parseInt(like.innerHTML) + 1;
+    like.setAttribute("class", 'likeHeart')
     totalLikes.innerHTML = parseInt(totalLikes.innerHTML) + 1;
-    like.append(elem)
+    heart.removeAttribute("onclick");
+    like.append(heart)
 }
