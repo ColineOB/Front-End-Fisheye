@@ -1,4 +1,5 @@
 function photographerFactory(data, optionSelect) {
+    console.log(optionSelect);
     const { name, portrait, city, country, tagline, price, likes, id } = data;
 
     const picture = `assets/photographers/ID_Photos/${portrait}`;
@@ -17,23 +18,39 @@ function photographerFactory(data, optionSelect) {
         const divPrice = document.createElement('div');
         const spanLikes = document.createElement('span');
         const heart = document.createElement ('i');
+        const arrowUp = document.createElement ('i');
+        const arrowDown = document.createElement ('i');
         const button = document.createElement('button');
+        const buttonSort = document.createElement('div');
+        const textfilter = document.createElement('p');
         const textPhotographer1 = {"address": city + ', ' + country, "tagline": tagline};
         const textPhotographer2 = {"price": price + '€/jour'};
         const textIndex = {...textPhotographer1,...textPhotographer2};
-        const options = {"option1": "Popularité", "option2": "Date", "option3": "titre"};
+        const options = {"option1": "Popularité", "option2": "Date", "option3": "Titre"};
 
         setAttributes(img, {"src": picture, "alt": "photo de profil de "+ name});
         setAttributes(a ,{"href": "./photographer.html?id="+ id, "aria-label": name, "alt": name});
         setAttributes(divPrice,{"class": "divprice"});
         setAttributes(spanLikes,{"class": "totalLikes"});
+        setAttributes(trierPar,{"class": "trierPar"});
         setAttributes(heart, {'class': "fa-solid fa-heart", 'alt': 'like'});
+        setAttributes(arrowUp, {'class': "closeIcon fa-solid fa-chevron-up", "style": "display: none"});
+        setAttributes(arrowDown, {'class': "menuIcon fa-solid fa-chevron-down"});
         setAttributes(button, {'class': 'contact_button', 'onclick': 'displayModal()'});
+        setAttributes(buttonSort, {'class': 'hamburger_button', 'onclick': "toggleMenu()"})
         divSort.setAttribute('class','sort')
         
         h1.textContent = name;
         h2.textContent = name;
         button.textContent = 'Contactez-moi';
+        
+        if (optionSelect !== undefined) {
+            textfilter.textContent = optionSelect;
+        } else {
+            textfilter.textContent = options.option1;
+
+        }
+        buttonSort.append(textfilter, arrowDown, arrowUp);
         trierPar.textContent = "Trier par";
         p.append(heart);
         divPrice.append(spanLikes, p, createParagraph(textPhotographer2))
@@ -41,9 +58,7 @@ function photographerFactory(data, optionSelect) {
         const idPhotographer = document.URL.split("?id=")[1]
         //create select
         const select = createFilter(options);
-        if (optionSelect !== undefined) {
-            select.value = optionSelect;
-        }
+        console.log(select);
         if (idPhotographer == undefined) {
             // index.html
             a.append(img, h2)
@@ -51,7 +66,7 @@ function photographerFactory(data, optionSelect) {
         } else {
             // photographer.html
             div.append(h1,createParagraph(textPhotographer1))
-            divSort.append(trierPar, select)
+            divSort.append(trierPar, buttonSort, select)
             article.append(div, button, img, divSort, divPrice)
         }
         return (article);
@@ -70,15 +85,15 @@ function setAttributes(element, attrs) {
 
 //loop for text paragraph
 function createFilter(obj){
-    const select = document.createElement('select');
-    setAttributes(select, {'aria-label':'trier par'})
+    const ul = document.createElement('ul');
+    setAttributes(ul, {'aria-label':'trier par', 'class': 'filter', "style": "display: none"})
     for (const property in obj) {
-        const option = document.createElement('option');
-        setAttributes(option, {"value": property, "style": "padding: 20px"});
-        option.textContent = obj[property]
-        select.appendChild(option)
+        const li = document.createElement('li');
+        setAttributes(li, {"value": property, 'class': 'item'});
+        li.textContent = obj[property]
+        ul.appendChild(li)
     }
-    return select
+    return ul
 }
 
 //loop for select
@@ -91,36 +106,6 @@ function createParagraph(obj){
         p.appendChild(span)
     }
     return p
-}
-
-// filter media
-function sortMedia(medias) {
-    select = document.querySelector('select')
-    let newArray = [];
-    select.addEventListener("change", () => {
-        switch (select.value) {
-            case 'option1':
-                    newArray = sortBy('likes').reverse()
-                break
-            case 'option2':
-                    newArray = sortBy('dates')
-                break
-            case 'option3':
-                    newArray = sortBy('title')
-                break
-            default :
-                    newArray = medias;
-        }
-        init(newArray, select.value);
-        return newArray;
-    })
-    function sortBy(property) {
-        return medias.sort((a,b) => {
-            return a[property] >= b[property]
-            ? 1
-            : -1
-        })
-    }
 }
 
 

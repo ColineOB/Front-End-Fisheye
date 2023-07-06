@@ -49,6 +49,7 @@
             querySelector.innerHTML = "";
             media_section.innerHTML = "";
             contact_modal.innerHTML = "";
+            console.log(select);
             displayData(filterphotographer, querySelector, select);
             if (array == undefined) {
                 array = sortPopularMedia;

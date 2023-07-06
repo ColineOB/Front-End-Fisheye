@@ -30,9 +30,6 @@
     border-radius: 50%;
     object-fit: cover;
 }
-.photograph-header article div {
-    justify-content: center;
-}
 
 .photograph-header article p {
     margin: 0;
@@ -61,19 +58,48 @@
 }
 
 .sort {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
+    margin-left: -100px;
 }
 
-.sort select {
-    margin-left: 15px;
-    background-color: var(--primary);
-    color: white;
+.sort .trierPar {
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    left: -95px;
+    top: 35px;
+}
+
+.hamburger_button {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
     font-size: 20px;
-    padding: 1em 1.5em;
-    border: 0;
-    outline: none;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+.filter {
+    position: relative;
+    display: inline;
+    margin: 0;
+    padding: 0 10px 0 10px;
+    z-index: 99;
+    font-size: 20px;
+    background-color: #901C1C;
+    color: white;
+    list-style: none;
+    cursor: pointer;
+    border-radius: 0 0 5px 5px;
+}
+
+.filter li {
+    padding: 10px 0 10px 15px;
+    border-top: 0.05rem solid #FAFAFA;
 }
 
 .contact_button {
