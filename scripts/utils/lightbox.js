@@ -18,7 +18,6 @@ function clickPicture(element) {
     main.style.display = "none";
     let index = arrImages.findIndex(e => e.dataset.id == element );
     const img = arrImages[index].cloneNode(true);
-    console.log(img);
     const close = document.createElement('i');
     const h2 = document.createElement('h2');
     const div = document.createElement('div');
@@ -39,10 +38,6 @@ function clickPicture(element) {
     divRight.append(close, next)
     div.append(img, h2)
     lightbox.append(previous, div, divRight);
-
-    // var svg = document.querySelector('.close').contentDocument;
-    // var elements = svg.getElementsByClassName("primaryColor");
-    // for (var i = 0; i < elements.length; i++) elements[i].style.fill = '#901C1C';
     
     next.onclick = function() {
        carroussel('+', arrImages, index)
@@ -70,7 +65,6 @@ function carroussel(symbole, array) {
     let carroussel = document.querySelector('.carrousel > img, .carrousel > video')
     let title = document.querySelector('.carrousel > h2')
     let index = array.findIndex(e => e.dataset.id == carroussel.dataset.id );
-    console.log(array.length);
     let newIndex = "";
     if (symbole == "+") {
         newIndex = index +1;
@@ -79,14 +73,11 @@ function carroussel(symbole, array) {
         }
     } else {
         newIndex = index -1;
-        console.log("newIndex", newIndex);
         if (newIndex < 0) {
             newIndex = array.length -1;
         } 
     }
-    console.log(newIndex);
-    let newImg = array[newIndex].cloneNode(true)
-    console.log("newImg",newImg);
+    let newImg = array[newIndex].cloneNode(true);
     newImg.removeAttribute("onclick");
     title.innerHTML = newImg.dataset.title;
     carroussel.replaceWith(newImg)

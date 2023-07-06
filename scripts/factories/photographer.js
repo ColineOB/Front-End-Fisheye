@@ -1,5 +1,4 @@
 function photographerFactory(data, optionSelect) {
-    console.log(optionSelect);
     const { name, portrait, city, country, tagline, price, likes, id } = data;
 
     const picture = `assets/photographers/ID_Photos/${portrait}`;
@@ -58,7 +57,6 @@ function photographerFactory(data, optionSelect) {
         const idPhotographer = document.URL.split("?id=")[1]
         //create select
         const select = createFilter(options);
-        console.log(select);
         if (idPhotographer == undefined) {
             // index.html
             a.append(img, h2)

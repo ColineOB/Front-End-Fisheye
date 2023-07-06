@@ -26,36 +26,6 @@ function toggleMenu() {
     }
   }
 
-// filter media
-// function sortMedia(medias) {
-//     select = document.querySelector('select')
-//     let newArray = [];
-//     select.addEventListener("change", () => {
-//         switch (select.value) {
-//             case 'option1':
-//                     newArray = sortBy('likes').reverse()
-//                 break
-//             case 'option2':
-//                     newArray = sortBy('dates')
-//                 break
-//             case 'option3':
-//                     newArray = sortBy('title')
-//                 break
-//             default :
-//                     newArray = medias;
-//         }
-//         init(newArray, select.value);
-//         return newArray;
-//     })
-//     function sortBy(property) {
-//         return medias.sort((a,b) => {
-//             return a[property] >= b[property]
-//             ? 1
-//             : -1
-//         })
-//     }
-// }
-
 function sortMedia(filterMedia){
   const select = document.querySelectorAll(".item");
   const hamburger= document.querySelector(".hamburger_button p");
@@ -78,7 +48,6 @@ function sortMedia(filterMedia){
                     default :
                             newArray = filterMedia;
                 }
-                console.log(newArray);
                 init(newArray, select[i].innerHTML);
                 return newArray;
             })
