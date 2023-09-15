@@ -36,7 +36,7 @@ function photographerFactory(data, optionSelect) {
         setAttributes(arrowUp, {'class': "closeIcon fa-solid fa-chevron-up", "style": "display: none"});
         setAttributes(arrowDown, {'class': "menuIcon fa-solid fa-chevron-down"});
         setAttributes(button, {'class': 'contact_button', 'onclick': 'displayModal()'});
-        setAttributes(buttonSort, {'class': 'hamburger_button', 'onclick': "toggleMenu()"})
+        setAttributes(buttonSort, {'class': 'hamburger_button', 'onclick': "toggleMenu(), aria-pressed='false'"})
         divSort.setAttribute('class','sort')
         
         h1.textContent = name;
