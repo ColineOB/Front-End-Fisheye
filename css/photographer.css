@@ -89,16 +89,19 @@
     margin: 0;
     padding: 0 10px 0 10px;
     z-index: 99;
-    font-size: 20px;
     background-color: #901C1C;
-    color: white;
-    list-style: none;
-    cursor: pointer;
     border-radius: 0 0 5px 5px;
 }
 
-.filter li {
+.filter button {
+    display: flex;
+    width: 100%;
     padding: 10px 0 10px 15px;
+    border: none;
+    font-size: 20px;
+    background-color: #901C1C;
+    color: white;
+    cursor: pointer;
     border-top: 0.05rem solid #FAFAFA;
 }
 

@@ -36,7 +36,7 @@ function photographerFactory(data, optionSelect) {
         setAttributes(arrowUp, {'class': "closeIcon fa-solid fa-chevron-up", "style": "display: none"});
         setAttributes(arrowDown, {'class': "menuIcon fa-solid fa-chevron-down"});
         setAttributes(button, {'class': 'contact_button', 'onclick': 'displayModal()'});
-        setAttributes(buttonSort, {'class': 'hamburger_button', 'onclick': "toggleMenu(), 'aria-label': 'sort'"})
+        setAttributes(buttonSort, {'class': 'hamburger_button', 'onclick': "toggleMenu()", 'tabindex':"0"})
         divSort.setAttribute('class','sort')
         
         h1.textContent = name;
@@ -50,6 +50,9 @@ function photographerFactory(data, optionSelect) {
 
         }
         buttonSort.append(textfilter, arrowDown, arrowUp);
+        buttonSort.onkeydown = function(e) {
+            if (e.keyCode == 13) toggleMenu()
+        }
         trierPar.textContent = "Trier par";
         p.append(heart);
         divPrice.append(spanLikes, p, createParagraph(textPhotographer2))
@@ -81,17 +84,17 @@ function setAttributes(element, attrs) {
     }
 }
 
-//loop for text paragraph
+//loop for filter
 function createFilter(obj){
-    const ul = document.createElement('ul');
-    setAttributes(ul, {'aria-label':'trier par', 'class': 'filter', "style": "display: none"})
+    const div = document.createElement('div');
+    setAttributes(div, {'aria-label':'trier par', 'class': 'filter', "style": "display: none"})
     for (const property in obj) {
-        const li = document.createElement('li');
-        setAttributes(li, {"value": property, 'class': 'item'});
-        li.textContent = obj[property]
-        ul.appendChild(li)
+        const button = document.createElement('button');
+        setAttributes(button, {"value": property, 'class': 'item'});
+        button.textContent = obj[property]
+        div.appendChild(button)
     }
-    return ul
+    return div
 }
 
 //loop for select

@@ -1,11 +1,11 @@
 
 function toggleMenu() {
-    const filter = document.querySelector(".filter");
-    const menuItems = document.querySelectorAll(".item");
-    const hamburger= document.querySelector(".hamburger_button");
-    const title= hamburger.querySelector("p")
-    const menuIcon = document.querySelector(".menuIcon");
-    const closeIcon = document.querySelector(".closeIcon");
+  const filter = document.querySelector(".filter");
+  const menuItems = document.querySelectorAll(".item");
+  const hamburger= document.querySelector(".hamburger_button");
+  const title= hamburger.querySelector("p")
+  const menuIcon = document.querySelector(".menuIcon");
+  const closeIcon = document.querySelector(".closeIcon");
     if (filter.classList.contains("showMenu")) {
       filter.classList.remove("showMenu");
       filter.style.display = "none";
@@ -21,6 +21,20 @@ function toggleMenu() {
       for (let i = 0; i < menuItems.length; i++) {
         if(menuItems[i].innerHTML == title.innerText) {
           menuItems[i].style.display = "none";
+        }
+      }
+      hamburger.onfocus = () => {
+        document.onkeydown = function(e) {
+          switch (e.keyCode) {
+              case 38:
+                  console.log("moins");
+                  break;
+              case 40:
+                console.log("plus");
+                  break;
+              case 27:
+                toggleMenu()
+          }
         }
       }
     }
