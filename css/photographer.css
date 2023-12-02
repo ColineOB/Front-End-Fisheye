@@ -128,18 +128,25 @@
     justify-items: center;
     margin-bottom: 50px;
 }
+
 .media_section article img, .media_section article video{
     height: 350px;
     width: 350px;
     object-fit: cover;
     cursor: pointer;
 }
+
 .media_section article .descriptionImg {
     display: flex;
     width: 350px;
     align-items: baseline;
     justify-content: space-between;
 }
+
+.descriptionImg h2 {
+    width: 300px;
+}
+
 .media_section article i {
     margin-left: 5px;
     color: var(--primary);

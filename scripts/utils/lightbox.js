@@ -12,7 +12,6 @@ function closelightbox() {
 function clickPicture(element) {
     const media_section = document.querySelector('.media_section');
     const images = media_section.querySelectorAll('.picture');
-    const title = media_section.querySelectorAll('h2');
     const arrImages = Array.from(images);
     lightbox.style.display = "flex";
     main.style.display = "none";
@@ -22,7 +21,6 @@ function clickPicture(element) {
     const h2 = document.createElement('h2');
     const div = document.createElement('div');
     const divRight = document.createElement('div');
-    const divImg = document.createElement('div');
     const previous = document.createElement('i');
     const next = document.createElement('i');
     
