@@ -23,20 +23,6 @@ function toggleMenu() {
           menuItems[i].style.display = "none";
         }
       }
-      hamburger.onfocus = () => {
-        document.onkeydown = function(e) {
-          switch (e.keyCode) {
-              case 38:
-                  console.log("moins");
-                  break;
-              case 40:
-                console.log("plus");
-                  break;
-              case 27:
-                toggleMenu()
-          }
-        }
-      }
     }
   }
 
